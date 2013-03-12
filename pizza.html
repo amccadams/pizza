@@ -7,67 +7,131 @@
     <title>Pizza</title>
       <meta name = "description" content = "Pizza Order Form" >
     <meta "author" content ="Amanda McCadams"/>
+    <link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/text.css" />
+<link rel="stylesheet" href="css/960.css" />
+<link rel="stylesheet" href="css/demo.css" />
+<link rel="stylesheet" href="css/style1.css" />
 
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> 
 
 
 
     <script type="text/javascript">
+   $(document).ready(function(){
+//good working code:
+    // function prepza() {
+    //   var output = "This order will have: <br />";
+    //   var checkboxes = document.forms["pizzaform"].toppingcheck.length;
+    //     $("form :checkbox:checked").each(function() {
+    //       output += this.value + "<br />";   
+    // });
+    //     $("form :radio:checked").each(function() {
+    //       output += this.value + "<br />";  
+    //   });
+    //     $("#pizzaOrder").html(output);
+    //   }
 
-    function prepza() {
-      var output = "This pizza will have: <br />";
-      var checkboxes = document.forms["pizzaform"].toppingcheck.length;
-        $("form :checkbox:checked").each(function() {
-          output += this.value + "<br />";   
-    });
-        $("form :radio:checked").each(function() {
-          output += this.value + "<br />";  
+      $("#menuOrder").hide();
+      function prepza() {
+        $("input[name=crust]:checked").each(function() {
+              var value = $(this).val();
+              $("#pizzaOrder").append(value);
+          });
+          $("input[name=toppingcheck]:checked").each(function() {
+              var value = $(this).val();
+              $("#pizzaOrder").append(value) ;
+              });
+          $("input[name=noodlecheck]:checked").each(function() {
+              var value = $(this).val();
+              $("#pastaOrder").append(value);
+          });
+          $("input[name=saucecheck]:checked").each(function() {
+              var value = $(this).val();
+              $("#pastaOrder").append(value);
+          });       
+          $("input[name=pastacheck]:checked").each(function() {
+              var value = $(this).val();
+              $("#pastaDishOrder").append(value);
+          });
+          $("input[name=dessertcheck]:checked").each(function() {
+              var value = $(this).val();
+              $("#dessertOrder").append(value);
+          });
+          $("#menuOrder").show();
+      };
+      $("#prepBtn").on("click", function(){
+        prepza();
       });
-        $("#pizzaOrder").html(output);
-      }
+    });  //end document ready
     </script>
 
 </head>
 <body>
+  <h1>Amanda's Pizzaria</h1>
+  <div id = "wrapper" class="container_12">
   <form id="pizzaform" action="#">
+  <div class = "grid_4">
     <table>
-      <tr>
-        <td>Toppings</td>
-        <td>Crust</td></tr>
-      <tr>
-        <td><input type="checkbox" id="topping1" value="Sausage" name="toppingcheck">Sausage
-        </td>
+      <thead><h3>Pizza</h3></thead>
+      <tr><h4>Pizza Crust</h4></tr>
+      <tr><input type="radio" name="crust" value="Regular Crust"checked="checked" id="radio1">Regular</tr><br>
+      <tr><input type="radio" name="crust" value="Deep Dish Crust" id="radio2" />Deep Dish</tr><br>
+      <tr><input type="radio" name="crust" value="Thin Crust" id="radio3">Thin</tr>
 
-        <td><input type="radio" name="crust" value="Regular"checked="checked" id="radio1">Regular</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" id="topping2" value="Pepperoni" name="toppingcheck">Pepperoni</td>
-        
-        <td><input type="radio" name="crust" value="Deep Dish" id="radio2" />Deep Dish</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" id="topping3" value="Ham"name="toppingcheck">Ham</td>
-        <td><input type="radio" name="crust" value="Thin" id="radio3">Thin</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" id="topping4" value="Green Peppers" name="toppingcheck">Green Peppers</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" id="topping5" value="Mushrooms" name="toppingcheck">Mushrooms</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" id="topping6" value="Onions"name="toppingcheck">Onions</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" id="topping7" value="Pineapple" name="toppingcheck">Pineapple</td>
-        <td></td>
-      </tr>
-  </table>
-  <p><input type="button" id="prepBtn" name="prepBtn" value="Prep Pizza" onclick="prepza();"></p>
+      <tr><h4>Pizza Toppings</h4></tr>
+        <tr><input type ="checkbox" id ="topping1" value="Sausage" name ="toppingcheck">Sausage </tr><br>
+        <tr><input type = "checkbox" id = "topping2" value="Pepperoni" name = "toppingcheck">Pepperoni </tr><br>
+        <tr><input type = "checkbox" id = "topping3" value="Mushrooms" name = "toppingcheck">Mushrooms</tr><br>
+        <tr><input type = "checkbox" id = "topping4" value="Green Olives" name = "toppingcheck">Green Olives</tr><br>
+        <tr><input type = "checkbox" id = "topping5" value="Black Olives" name = "toppingcheck">Black Olives</tr><br>
+        <tr><input type = "checkbox" id = "topping6" value="Banana Peppers" name = "toppingcheck">Banana Peppers</tr><br>
+        <tr><input type = "checkbox" id = "topping7" value="Anchovies" name = "toppingcheck">Anchovies</tr>
+      </table>
+  </div>
+  <div class = "grid_4">
+    <table>
+      <tr><h3>Pasta Bowl</h3></tr>
+      <tr><h4>Noodles</h4></tr>
+        <tr><input type ="radio" id = "noodle1" value ="Spaghetti" name ="noodlecheck">Spaghetti</tr><br>
+        <tr><input type ="radio" id = "noodle2" value ="Penne" name ="noodlecheck">Penne</tr><br>
+        <tr><input type ="radio" id = "noodle3" value ="Fettuccini" name ="noodlecheck">Fettuccini</tr><br>
+        <tr><input type ="radio" id= "noodle4" value ="Angel Hair" name="noodlecheck">Angel Hair</tr><br>   
+      <tr><h4>Sauces</h4></tr>
+      <tr><input type ="radio" id = "sauce1" value ="Marinara" name ="saucecheck">Marinara</tr><br>
+      <tr><input type ="radio" id = "sauce2" value ="Alfredo" name ="saucecheck">Alfredo</tr><br>
+      <tr><input type ="radio" id = "sauce3" value ="Meatball" name ="saucecheck">Meatball</tr><br>
+      <tr><input type ="radio" id= "sauce4" value ="Pesto" name="saucecheck">Pesto</tr>
+
+    </table>
+    <table><h3>Pasta Dishes</h3>
+      <tr><input type ="checkbox" id ="pasta1" value ="Lasagna" name="pastacheck">Lasagna</tr><br>
+      <tr><input type ="checkbox" id = "pasta2" value ="Eggplant Parmesian" name="pastacheck">Eggplant Parmesian</tr>
+    </table>
+  </div>
+  <div class = "grid_4">
+    <table>
+      <tr><h3>Dessert</h3></tr>
+        <tr><input type ="checkbox" id="dessert1" value="Tiramisu" name="dessertcheck">Tiramisu</tr><br>
+      <tr><input type ="checkbox" id="dessert2" value="Spumoni" name="dessertcheck">Spumoni</tr><br>
+      <tr><input type ="checkbox" id="dessert3" value="Cheese Cake" name="dessertcheck">Cheese Cake</tr>
+    </table>
+<p><input type="button" id="prepBtn" name="prepBtn" value="Submit My Order"></p>
   </form>
-  <div id="pizzaOrder"></div>
+  <di v id="menuOrder">
+    <div id ="pizzaOrder">
+        <h4>This is the tasty pizza order</h4>
+    </div>
+    <div id ="pastaOrder">
+        <h4>This is what will be in your pasta bowl</h4>
+    </div>
+    <div id ="pastaDishOrder">
+        <h4>This will be your Italian favorites</h4>
+    </div>
+    <div id ="dessertOrder">
+        <h4>You will really enjoy this for dessert</h4>
+    </div>
+  </div>
+</div>
   </body>
 </html>
